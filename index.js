@@ -22,7 +22,7 @@ const workshopSchema =  mongoose.Schema(
         description: { type: String, required: true} ,
         open: { type: String, required: true },
         closed: { type: String, required: true },
-        typicalagerange: { type: string, required: true}
+        typicalagerange: { type: String, required: true}
     }
 );
 
@@ -46,19 +46,25 @@ app.patch("/workshop/:id", async (req, res)=>{
     req.body, {new: true})
     res.json(response)
 })
-app.POST ("/workshop", async (req, res)=>{
-    const workshop= "sessions",
-    email= "angelica.melo@compscihigh.org "
+
+app.post("/workshop/save", async (req, res) => {
+const workshop = await new workshop({
+ name: req.body.name,
+ description: req.body.description,
+ open: req.body.open,
+ closed: req.body.closed ,
+ typicalagerange:req.body.typicalagerange
 }).save()
-res.json(workshop);
-({
-const workshops = await new user })
-    await mongoose.connect("mongodb+srv://SE12:CSH2025@cluster0.2yqbx.mongodb.net/restaurant?retryWrites=true&w=majority&appName=Cluster0");
+   res.json(user1);
+ });
+
+ async function startServer(){
+    await mongoose.connect("mongodb+srv://SE12:CSH2025@cluster0.2yqbx.mongodb.net/workshop?retryWrites=true&w=majority&appName=Cluster0");
 
 
 app.listen(3000, () => {
         console.log(`Server running.`);
     });
-
+ }
 
 startServer();
